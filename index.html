@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mix Nation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎧 Mix Nation</h1>
+    <nav>
+      <a href="#discover">Discover</a>
+      <a href="#upload">Upload</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#lessons">DJ Lessons</a>
+      <a href="#controller">Virtual DJ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Remix. Share. Download. DJ Like It’s 2010.</h2>
+    <input type="text" placeholder="Search remixes, artists, genres..." />
+  </section>
+
+  <section id="discover">
+    <h3>🔥 Discover Remixes</h3>
+
+    <!-- Tracks 1-3 (Playable) -->
+    <div class="track">
+      <p>🎵 Track 1 - Genre: Trap</p>
+      <audio controls><source src="assets/sample1.mp3" type="audio/mpeg"></audio>
+      <button onclick="showFeedback()">Download</button>
+    </div>
+    <div class="track">
+      <p>🎵 Track 2 - Genre: EDM</p>
+      <audio controls><source src="assets/sample2.mp3" type="audio/mpeg"></audio>
+      <button onclick="showFeedback()">Download</button>
+    </div>
+    <div class="track">
+      <p>🎵 Track 3 - Genre: Lo-Fi</p>
+      <audio controls><source src="assets/sample3.mp3" type="audio/mpeg"></audio>
+      <button onclick="showFeedback()">Download</button>
+    </div>
+
+    <!-- Tracks 4 to 25 -->
+    <!-- You can copy this block and update Track numbers if you want even more -->
+    <!-- Fake play buttons just for looks -->
+    ${[...Array(22)].map((_, i) => {
+      const num = i + 4;
+      const genre = num % 3 === 0 ? 'Trap' : num % 3 === 1 ? 'EDM' : 'Lo-Fi';
+      return `
+      <div class="track">
+        <p>🎵 Track ${num} - Genre: ${genre}</p>
+        <button disabled>🔊 Play</button>
+        <button onclick="showFeedback()">Download</button>
+      </div>`;
+    }).join('')}
+  </section>
+
+  <section id="upload">
+    <h3>📤 Upload Your Remix</h3>
+    <button onclick="showUpload()">Upload Remix</button>
+  </section>
+
+  <section id="marketplace">
+    <h3>🛒 Marketplace</h3>
+    <div class="track">
+      <p>💰 LoFi Remix Pack - $5</p>
+      <button>Buy Now</button>
+    </div>
+  </section>
+
+  <section id="lessons">
+    <h3>🎓 DJ Lessons</h3>
+    <ul>
+      <li><strong>FREE:</strong> Intro to DJing</li>
+      <li>How to Beatmatch - $9.99</li>
+      <li>Mastering EQ - $9.99</li>
+    </ul>
+  </section>
+
+  <section id="controller">
+    <h3>🎚 Virtual DJ Controller</h3>
+    <div class="controller">
+      <button>▶ Deck A</button>
+      <button>▶ Deck B</button>
+      <input type="range" min="0" max="100" value="50" />
+      <p>Crossfade</p>
+    </div>
+  </section>
+
+  <div id="feedback-modal" class="modal">
+    <h4>Thanks for downloading!</h4>
+    <p>Rate this remix:</p>
+    ⭐⭐⭐⭐⭐<br />
+    <textarea placeholder="Leave feedback..."></textarea><br />
+    <button onclick="hideFeedback()">Submit</button>
+  </div>
+
+  <div id="upload-modal" class="modal">
+    <h4>Upload Your Remix</h4>
+    <input type="text" placeholder="Track Name" /><br />
+    <input type="file" /><br />
+    <button onclick="hideUpload()">Upload</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
